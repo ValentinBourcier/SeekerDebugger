@@ -100,10 +100,10 @@ SeekerLiteCommands >> registerCommands: stDebuggerInstance forRoot: rootCommandG
 { #category : #building }
 SeekerLiteCommands >> stCodeCommandsTree [
 
-	^ {
-		  {
+	^ { 
+		  { 
 			  'Messages'.
-			  {
+			  { 
 				  SkAllMessageSendsLC.
 				  SkAllMessageSendsWithSelectorLC.
 				  SkAllMessageSendsWithSelectorPromptLC.
@@ -111,16 +111,18 @@ SeekerLiteCommands >> stCodeCommandsTree [
 				  SkAllSignallingExceptionsLC " }.
 			  #smallExport.
 			  'Queries for listing message sends' }.
-		  {
+		  { 
 			  ' Messages - Object Centric'.
-			  {
+			  { 
 				  SkAllMessageSendsToSelfLC.
-				  SkAllMessageSendsToObjectInVariableLC }.
+				  SkAllMessageSendsToObjectInVariableLC.
+				  SkAllMessageSendsWithObjectInArgumentsLC.
+					SkAllMessageSendsBetweenTwoObjectsPromptLC}.
 			  #objects.
 			  'Queries for listing messages sent to a specific object' }.
-		  {
+		  { 
 			  'Instances Creations'.
-			  {
+			  { 
 				  SkAllInstanceCreationsLC.
 				  SkAllInstanceCreationsOfClassLC.
 				  SkAllInstanceCreationsOfClassPromptLC ".
@@ -128,24 +130,38 @@ SeekerLiteCommands >> stCodeCommandsTree [
 				  SkAllInstanceCreationsOfExceptionLC " }.
 			  #smallNew.
 			  'Queries for listing instances creations' }.
-		  {
-			  ' Assignments - Object Centric'.
-			  {
+		  { 
+			  'Assignments - Object Centric'.
+			  { 
 				  SkChangesOfSelfLC.
 				  SkChangesOfObjectLC.
 				  SkChangesOfInstanceVariableLC }.
 			  #objects.
-			  'Queries for listing asignments on instance variables of a specific object' }.
-		  {
+			  'Queries for listing assignments on instance variables of a specific object' }.
+		  { 
+			  ' Variables accesses - Object Centric'.
+			  { 
+				  SkAllAccessesToInstanceVariablesOfObjectLC.
+				  SkAllAccessesToAnInstanceVariablesOfObjectLC }.
+			  #objects.
+			  'Queries for listing accesses to instance variables of a specific object' }.
+
+		  { 
 			  'Assignments - General'.
-			  {
+			  { 
 				  SkChangesOfVariableByNameLC.
 				  SkChangesOfAnyVariableLC.
 				  SkChangesOfAnyObjectOfClassLC }.
 			  #changeUpdate.
 			  'Queries for listing assignments on variables' }.
+		  { 
+			  'Variables accesses - General'.
+			  { SkAllAccessesToVariablesLC }.
+			  #changeUpdate.
+			  'Queries for listing accesses to instance variables of a specific object' }.
+
 		  self domainSpecificQueries.
-		  {
+		  { 
 			  'User Queries'.
 			  self makeUTTQsMenu.
 			  #exception.

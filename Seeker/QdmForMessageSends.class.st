@@ -12,18 +12,13 @@ QdmForMessageSends >> buildContextMenuForResults: aQueryResutls withSelectedItem
 	^ SpMenuPresenter new
 		  addItem: [ :item | 
 			  item
-				  name: 'Inspect the message receiver object';
-				  action: [ selection messageReceiver inspect ] ];
-		  addItem: [ :item | 
-			  item
-				  name: 'Inspect the arguments';
-				  action: [ selection messageArguments inspect ] ];
+				  name: 'Inspect the variable value';
+				  action: [ selection value inspect ] ];
 		  addItem: [ :item | 
 			  item
 				  name: 'Time-Travel to its instantiation message';
 				  action: [ 
-					  tracer timeTravelToTraceTime:
-							  selection messageReceiverOid asExecutedBytecodeTraceTime ] ];
+					  tracer timeTravelToBytecodeIndex: selection bytecodeIndex ] ];
 		  addItem: [ :item | 
 			  item
 				  name: 'Inspect the query result item';
