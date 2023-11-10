@@ -1,42 +1,38 @@
 Class {
-	#name : #QdmForAccessesToVariables,
+	#name : #QdmForReadingsAndWritings,
 	#superclass : #QueryDisplayModel,
 	#category : #'Seeker-UI'
 }
 
 { #category : #'as yet unclassified' }
-QdmForAccessesToVariables >> buildContextMenuForResults: aQueryResutls withSelectedItem: selection forTracer: tracer [
-
+QdmForReadingsAndWritings >> buildContextMenuForResults: aQueryResutls withSelectedItem: selection forTracer: tracer [
 	"builds a context menu for an item of this display model"
 
 	^ SpMenuPresenter new
-		  addItem: [ :item | 
-			  item
-				  name: 'Inspect the variable value';
-				  action: [ selection value inspect ] ];
-		  addItem: [ :item | 
+		  addItem: [ :item |
 			  item
 				  name: 'Time-Travel to its instantiation message';
-				  action: [ 
+				  action: [
 					  tracer timeTravelToBytecodeIndex: selection bytecodeIndex ] ];
-		  addItem: [ :item | 
+		  addItem: [ :item |
 			  item
 				  name: 'Inspect the query result item';
 				  action: [ selection inspect ] ];
-		  addItem: [ :item | 
+		  addItem: [ :item |
 			  item
 				  name: 'Inspect the query result collection';
-				  action: [ aQueryResutls inspect ] ];yourself
+				  action: [ aQueryResutls inspect ] ];
+		  yourself
 ]
 
 { #category : #'as yet unclassified' }
-QdmForAccessesToVariables >> defaultQueryTitle [
+QdmForReadingsAndWritings >> defaultQueryTitle [ 
 
-	^ 'Accesses to variable query'
+	^ 'All readings and writings Query'
 ]
 
 { #category : #initialization }
-QdmForAccessesToVariables >> initializeModel [
+QdmForReadingsAndWritings >> initializeModel [
 
 	(self addColumn: #bytecodeIndex)
 		label: 'Step';
@@ -47,7 +43,7 @@ QdmForAccessesToVariables >> initializeModel [
 	(self addColumn: #variableName)
 		label: 'Variable';
 		sm.
-"	(self addColumn: #variableName)
+	"(self addColumn: #value)
 		label: 'Value';
 		md.
 	(self addColumn: #source)
@@ -56,7 +52,22 @@ QdmForAccessesToVariables >> initializeModel [
 	(self addColumn: #isImplicitRead)
 		label: 'Implicit access?';
 		sm.
-"	(self addColumn: #inNode)
+	"(self addColumn: #inNode)
 		label: 'Node';
-		lg"
+		lg.
+
+	(self addColumn: #valueChangedFrom)
+		label: 'Current Value';
+		sm.
+
+	(self addColumn: #valueChangedTo)
+		label: 'To be Assigned';
+		sm.
+	(self addColumn: #receiverClassAndPackage)
+		label: 'Method Class [Package]';
+		md.
+
+	(self addColumn: #methodSelector)
+		label: 'Method Selector';
+		sm"
 ]
