@@ -37,37 +37,25 @@ QdmForReadingsAndWritings >> initializeModel [
 	(self addColumn: #bytecodeIndex)
 		label: 'Step';
 		bc.
-	(self addColumn: #variableClass)
+	(self addColumn: #variableClassName)
 		label: 'Variable class';
 		sm.
 	(self addColumn: #variableName)
 		label: 'Variable';
 		sm.
-	"(self addColumn: #value)
+	(self addColumn: #variableValue)
 		label: 'Value';
 		md.
-	(self addColumn: #source)
+	(self addColumn: #sourceCode)
 		label: 'Source code';
-		lg."
+		lg.
+	(self addColumn: #isRead)
+		label: 'Variable access?';
+		sm.
 	(self addColumn: #isImplicitRead)
 		label: 'Implicit access?';
 		sm.
-	"(self addColumn: #inNode)
+	(self addColumn: #inNode)
 		label: 'Node';
-		lg.
-
-	(self addColumn: #valueChangedFrom)
-		label: 'Current Value';
-		sm.
-
-	(self addColumn: #valueChangedTo)
-		label: 'To be Assigned';
-		sm.
-	(self addColumn: #receiverClassAndPackage)
-		label: 'Method Class [Package]';
-		md.
-
-	(self addColumn: #methodSelector)
-		label: 'Method Selector';
-		sm"
+		lg
 ]

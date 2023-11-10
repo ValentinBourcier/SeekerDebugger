@@ -7,15 +7,15 @@ Class {
 { #category : #accessing }
 SkProjectionAccessToVariable >> value: state [
 
-	state isImplicitReadingOfInstanceVariable forceTrueOrFalse ifTrue: [ 
+	state isImplicitReadingOfInstanceVariable forceTrueOrFalse ifTrue: [
 		^ SkProjectionImplicitAccessToInstanceVariable new value: state ].
 
 	^ autoType newWith
 		  bytecodeIndex: state bytecodeIndex;
-		  variableClass: state node variable class;
+		  variableClassName: state node variable class name;
 		  variableName: state node variable name;
-		  value: state variableValue;
-		  source: state node parent sourceCode;
+		  variableValue: state variableValue;
+		  sourceCode: state node parent sourceCode;
 		  isImplicitRead: false;
 		  inNode: state node parent;
 		  endWith

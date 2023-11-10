@@ -41,22 +41,22 @@ QdmForAccessesToVariables >> initializeModel [
 	(self addColumn: #bytecodeIndex)
 		label: 'Step';
 		bc.
-	(self addColumn: #variableClass)
+	(self addColumn: #variableClassName)
 		label: 'Variable class';
 		sm.
 	(self addColumn: #variableName)
 		label: 'Variable';
 		sm.
-"	(self addColumn: #variableName)
+	(self addColumn: #variableValue)
 		label: 'Value';
 		md.
-	(self addColumn: #source)
+	(self addColumn: #sourceCode)
 		label: 'Source code';
-		lg."
+		lg.
 	(self addColumn: #isImplicitRead)
 		label: 'Implicit access?';
 		sm.
-"	(self addColumn: #inNode)
+	(self addColumn: #inNode)
 		label: 'Node';
-		lg"
+		lg
 ]

@@ -9,7 +9,7 @@ SkProjectionImplicitAccessToInstanceVariable >> value: state [
 
 	^ autoType newWith
 		  bytecodeIndex: state bytecodeIndex;
-		  variableClass: state implicitReadInstanceVariable class;
+		  variableClassName: state implicitReadInstanceVariable class name;
 		  variableName: state nameOfImplicitReadInstanceVariable;
 		  value: state valueOfImplicitReadInstanceVariable;
 		  source: state node sourceCode;

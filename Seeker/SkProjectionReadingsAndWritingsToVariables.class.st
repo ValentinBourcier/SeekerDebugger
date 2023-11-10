@@ -7,75 +7,55 @@ Class {
 { #category : #accessing }
 SkProjectionReadingsAndWritingsToVariables >> value: aProgramState [
 
-	^ [
-	  aProgramState isAssignment
-		  ifTrue: [ self valueWriting: aProgramState ]
-		  ifFalse: [ self valueReading: aProgramState ] ] onErrorDo: [ :e |
-		  AutoTypeErrorObject new: e ]
+	aProgramState isAssignment ifTrue: [
+		^ self valueForAssignment: aProgramState ].
+	^ self valueForAccess: aProgramState
 ]
 
 { #category : #'as yet unclassified' }
-SkProjectionReadingsAndWritingsToVariables >> valueImplicitReading: state [
+SkProjectionReadingsAndWritingsToVariables >> valueForAccess: aState [
 
-	autoType
-		variableClass: state implicitReadInstanceVariable owningClass;
-		variableName: state nameOfImplicitReadInstanceVariable;
-		"value: state valueOfImplicitReadInstanceVariable;
-		source: state node sourceCode;"
-		isImplicitRead: true
-]
-
-{ #category : #'as yet unclassified' }
-SkProjectionReadingsAndWritingsToVariables >> valueReading: state [
-
-	autoType newWith
-		"methodSelector: 'NAW';
-		receiverClass: 'NAW';
-		receiverClassAndPackage: 'NAW';"
-		bytecodeIndex: state bytecodeIndex.
-		"node: 'NAW';
-		receiverAlias: 'NAW';
-		variableNode: 'NAW';
-		valueChangedFrom: 'NAW';
-		valueChangedTo: 'NAW';
-		receiverPackage: 'NAW'."
-
-	state isImplicitReadingOfInstanceVariable "forceTrueOrFalse"
-		ifTrue: [ self valueImplicitReading: state ]
-		ifFalse: [
-			autoType
-				variableName: state node variable name;
-				variableClass: state node variable class;
-				"value: state variableValue;
-				source: state node parent sourceCode;"
-				isImplicitRead: false
-				"inNode: state node parent "].
-
-	^ autoType endWith
-]
-
-{ #category : #'as yet unclassified' }
-SkProjectionReadingsAndWritingsToVariables >> valueWriting: state [
+	aState isImplicitReadingOfInstanceVariable forceTrueOrFalse ifTrue: [
+		^ self valueForImplicitAccess: aState ].
 
 	^ autoType newWith
-		  "methodSelector: state methodSelector;
-		  receiverClass: state receiverClass;
-		  receiverClassAndPackage:
-			  state receiverClass name , ' [' , state receiverPackage name
-			  , ']';"
-		  bytecodeIndex: state bytecodeIndex;
-		  "node: state node;
-		  receiverAlias: state receiverAlias;
-		  variableNode: state node variable;"
-		  variableName: state node variable variable name;
-		  "valueChangedFrom:
-			  (state node variable variable readInContext: state context);
-		  valueChangedTo: state assignmentNextValue;
-		  receiverPackage: state receiverPackage;"
-		  variableClass: state node variable variable class;
-		  "value: 'NAR';
-		  source: 'NAR';"
+		  bytecodeIndex: aState bytecodeIndex;
+		  variableClassName: aState node variable class name;
+		  variableName: aState node variable name;
+		  variableValue: aState variableValue;
+		  sourceCode: aState node parent sourceCode;
+		  isRead: true;
 		  isImplicitRead: false;
-		  "inNode: 'NAR';"
+		  inNode: aState node parent;
+		  endWith
+]
+
+{ #category : #'as yet unclassified' }
+SkProjectionReadingsAndWritingsToVariables >> valueForAssignment: aState [
+
+	^ autoType newWith
+		  bytecodeIndex: aState bytecodeIndex;
+		  variableClassName: aState node variable variable class name;
+		  variableName: aState node variable variable name;
+		  variableValue: aState assignmentNextValue;
+		  sourceCode: 'none';
+		  isRead: false;
+		  isImplicitRead: false;
+		  inNode: aState node;
+		  endWith
+]
+
+{ #category : #'as yet unclassified' }
+SkProjectionReadingsAndWritingsToVariables >> valueForImplicitAccess: aState [
+
+	^ autoType newWith
+		  bytecodeIndex: aState bytecodeIndex;
+		  variableClassName: aState implicitReadInstanceVariable class name;
+		  variableName: aState nameOfImplicitReadInstanceVariable;
+		  variableValue: aState valueOfImplicitReadInstanceVariable;
+		  sourceCode: aState node sourceCode;
+		  isRead: true;
+		  isImplicitRead: true;
+		  inNode: aState node;
 		  endWith
 ]
