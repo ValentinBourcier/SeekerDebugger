@@ -43,16 +43,16 @@ QdmForReadingsAndWritings >> initializeModel [
 	(self addColumn: #variableName)
 		label: 'Variable';
 		sm.
-	(self addColumn: #variableName)
+	"(self addColumn: #value)
 		label: 'Value';
 		md.
 	(self addColumn: #source)
 		label: 'Source code';
-		lg.
+		lg."
 	(self addColumn: #isImplicitRead)
 		label: 'Implicit access?';
 		sm.
-	(self addColumn: #inNode)
+	"(self addColumn: #inNode)
 		label: 'Node';
 		lg.
 
@@ -69,5 +69,5 @@ QdmForReadingsAndWritings >> initializeModel [
 
 	(self addColumn: #methodSelector)
 		label: 'Method Selector';
-		sm.
+		sm"
 ]

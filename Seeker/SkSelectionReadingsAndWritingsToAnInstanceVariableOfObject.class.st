@@ -40,5 +40,5 @@ SkSelectionReadingsAndWritingsToAnInstanceVariableOfObject >> variableName: anOb
 
 	variableName := anObject.
 	readingSelection variableName: anObject.
-	readingSelection variableName: anObject
+	writingSelection variableName: anObject
 ]

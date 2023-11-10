@@ -17,6 +17,12 @@ TTQAllReadingsAndWritingsToAnInstanceVariableOfObject class >> queryFrom: source
 		  yourself
 ]
 
+{ #category : #'as yet unclassified' }
+TTQAllReadingsAndWritingsToAnInstanceVariableOfObject class >> selectionFunction [
+
+	^ SkSelectionReadingsAndWritingsToAnInstanceVariableOfObject
+]
+
 { #category : #accessing }
 TTQAllReadingsAndWritingsToAnInstanceVariableOfObject >> objectOid [
 

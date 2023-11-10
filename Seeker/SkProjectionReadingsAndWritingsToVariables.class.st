@@ -18,39 +18,38 @@ SkProjectionReadingsAndWritingsToVariables >> value: aProgramState [
 SkProjectionReadingsAndWritingsToVariables >> valueImplicitReading: state [
 
 	autoType
-		variableClass: state implicitReadInstanceVariable class;
+		variableClass: state implicitReadInstanceVariable owningClass;
 		variableName: state nameOfImplicitReadInstanceVariable;
-		value: state valueOfImplicitReadInstanceVariable;
-		source: state node sourceCode;
-		isImplicitRead: true;
-		inNode: state node
+		"value: state valueOfImplicitReadInstanceVariable;
+		source: state node sourceCode;"
+		isImplicitRead: true
 ]
 
 { #category : #'as yet unclassified' }
 SkProjectionReadingsAndWritingsToVariables >> valueReading: state [
 
 	autoType newWith
-		methodSelector: 'NAW';
+		"methodSelector: 'NAW';
 		receiverClass: 'NAW';
-		receiverClassAndPackage: 'NAW';
-		bytecodeIndex: state bytecodeIndex;
-		node: 'NAW';
+		receiverClassAndPackage: 'NAW';"
+		bytecodeIndex: state bytecodeIndex.
+		"node: 'NAW';
 		receiverAlias: 'NAW';
 		variableNode: 'NAW';
 		valueChangedFrom: 'NAW';
 		valueChangedTo: 'NAW';
-		receiverPackage: 'NAW'.
+		receiverPackage: 'NAW'."
 
-	state isImplicitReadingOfInstanceVariable forceTrueOrFalse
-		ifTrue: [ self valueImplicitReading: state withAutoType: autoType ]
+	state isImplicitReadingOfInstanceVariable "forceTrueOrFalse"
+		ifTrue: [ self valueImplicitReading: state ]
 		ifFalse: [
 			autoType
 				variableName: state node variable name;
 				variableClass: state node variable class;
-				value: state variableValue;
-				source: state node parent sourceCode;
-				isImplicitRead: false;
-				inNode: state node parent ].
+				"value: state variableValue;
+				source: state node parent sourceCode;"
+				isImplicitRead: false
+				"inNode: state node parent "].
 
 	^ autoType endWith
 ]
@@ -59,24 +58,24 @@ SkProjectionReadingsAndWritingsToVariables >> valueReading: state [
 SkProjectionReadingsAndWritingsToVariables >> valueWriting: state [
 
 	^ autoType newWith
-		  methodSelector: state methodSelector;
+		  "methodSelector: state methodSelector;
 		  receiverClass: state receiverClass;
 		  receiverClassAndPackage:
 			  state receiverClass name , ' [' , state receiverPackage name
-			  , ']';
+			  , ']';"
 		  bytecodeIndex: state bytecodeIndex;
-		  node: state node;
+		  "node: state node;
 		  receiverAlias: state receiverAlias;
-		  variableNode: state node variable;
+		  variableNode: state node variable;"
 		  variableName: state node variable variable name;
-		  valueChangedFrom:
+		  "valueChangedFrom:
 			  (state node variable variable readInContext: state context);
 		  valueChangedTo: state assignmentNextValue;
-		  receiverPackage: state receiverPackage;
+		  receiverPackage: state receiverPackage;"
 		  variableClass: state node variable variable class;
-		  value: 'NAR';
-		  source: 'NAR';
-		  isImplicitRead: 'NAR';
-		  inNode: 'NAR';
+		  "value: 'NAR';
+		  source: 'NAR';"
+		  isImplicitRead: false;
+		  "inNode: 'NAR';"
 		  endWith
 ]
